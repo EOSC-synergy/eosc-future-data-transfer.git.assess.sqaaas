@@ -1,0 +1,60 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EGI-Federation/eosc-future-data-transfer:
+      branch: main
+      repo: https://github.com/EGI-Federation/eosc-future-data-transfer.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.9
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/EGI-Federation/eosc-future-data-transfer git:
+        commands:
+        - /usr/bin/env sh .sqa/script.clammy-lime-eagle.sh
+        container: qc.acc_breezy-brown-turtle
+  QC.Doc:
+    repos:
+      github.com/EGI-Federation/eosc-future-data-transfer find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.boozy-amaranth-tapir.sh
+        container: qc.doc_foggy-cinnamon-wolverine
+      github.com/EGI-Federation/eosc-future-data-transfer git:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-khaki-quail.sh
+        container: qc.doc_gamy-magnolia-collie
+      github.com/EGI-Federation/eosc-future-data-transfer markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-ochre-wallaby.sh
+        container: qc.doc_slaphappy-asparagus-giraffe
+  QC.Lic:
+    repos:
+      github.com/EGI-Federation/eosc-future-data-transfer licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleepy-aquamarine-snake.sh
+        container: qc.lic_shaggy-heliotrope-saola
+  QC.Sty:
+    repos:
+      github.com/EGI-Federation/eosc-future-data-transfer checkstyle:
+        commands:
+        - /usr/bin/env sh .sqa/script.wiggy-cinnabar-setter.sh
+        container: qc.sty_breezy-eggplant-wasp
+      github.com/EGI-Federation/eosc-future-data-transfer hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.hazy-plum-bracke.sh
+        container: qc.sty_leaky-puce-tzu
+      github.com/EGI-Federation/eosc-future-data-transfer jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sloppy-yellow-wrasse.sh
+        container: qc.sty_scummy-amaranth-dane
+  QC.Ver:
+    repos:
+      github.com/EGI-Federation/eosc-future-data-transfer get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.pasty-chocolate-neanderthal.sh
+        container: qc.ver_wiggy-red-quetzal
+timeout: 5400
